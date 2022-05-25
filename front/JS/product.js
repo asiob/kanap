@@ -14,7 +14,7 @@ let color = "";
 let quantity = 0;
 //creer un tableau pour stocker le produit à ajouter au panier
 let productToAdd = {};
-
+console.log("test produit solo",produitSolo);
 afficherProduit(produitSolo,item);
 
 //recuperer le bouton dans le dom
@@ -35,11 +35,8 @@ let champCouleur = document.querySelector("#colors");
 btnAddToCart.addEventListener("click", function(){
   quantity = champQte.value ;
   color = champCouleur.value;
-  productToAdd = {
-    id: id,
-    color: color,
-    qte: quantity
-  }
-  ajouterPanier(productToAdd);
+  produitSolo.quantite = quantity;
+  produitSolo.selectedColor = color;
+  ajouterPanier(produitSolo);
 
 });
