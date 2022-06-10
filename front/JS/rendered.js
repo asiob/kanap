@@ -21,7 +21,15 @@ import { optionColors } from "./utils.js";
         `;
     }
 }
-function afficherProduit(produitSolo, elementHtml) {
+
+
+
+/**
+ * afficher un produit
+ * @param {Object} produitSolo 
+ * @param {HtmlElement} elementHtml 
+ */
+function renderProduct(produitSolo, elementHtml) {
     elementHtml.innerHTML = `
     <article>
     <div class="item__img">
@@ -30,8 +38,8 @@ function afficherProduit(produitSolo, elementHtml) {
     <div class="item__content">
 
       <div class="item__content__titlePrice">
-        <h1>${produitSolo.name}</h1>
-        <p>Prix : <span> ${produitSolo.price}</span> €</p>
+        <h1 id="title">${produitSolo.name}</h1>
+        <p>Prix : <span id="price"> ${produitSolo.price}</span> €</p>
       </div>
 
       <div class="item__content__description">
@@ -74,5 +82,5 @@ function afficherProduit(produitSolo, elementHtml) {
 
 export {
     renderProducts,
-    afficherProduit,
+    renderProduct,
 }
