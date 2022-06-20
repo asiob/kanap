@@ -71,18 +71,22 @@ function ajouterPanier(product, panier) {
 
 
 
-  const afficherPanier = () => {
+  const afficherPanier = (spanQty, spanPrice) => {
     //recuperer le panier du localstorage
-  // let prixTotal = 0;
-  let panier = JSON.parse(localStorage.getItem('panier'));
-  console.log(panier); 
-  let section = document.querySelector('#cart__items');
-  panier.forEach (produit => 
-  {
-    afficherProduitDuPanier (produit, section);
-    // prixTotal += produit.price;
-  })
-  
+    let prixTotal = 0;
+    let qteTotal = 0;
+    let panier = JSON.parse(localStorage.getItem('panier'));
+    console.log(panier); 
+    let section = document.querySelector('#cart__items');
+    console.log(section);
+    panier.forEach (produit => 
+    {
+      afficherProduitDuPanier (produit, section);
+      prixTotal += produit.price;
+      qteTotal += produit.qty;
+      spanQty.innerHTML = prixTotal;
+      spanPrice.innerHTML = qteTotal;
+    });
   }
 
 
@@ -115,19 +119,35 @@ function ajouterPanier(product, panier) {
             `
 }
 
-function afficherPrixTotal (produit, element) {
+// function afficherPrixTotal (element, qteTotal, prixTotal) {
 
-  element.innerHTML +=
-`
-<p>Total (<span id="totalQuantity"><!-- 2 --></span> articles) : <span id="totalPrice"><!-- 84,00 --></span> €</p>
-            </div>
-            <div class="cart__order">
-`
+// element.innerHTML =
+// `
+// <p>
+//   Total (<span id="totalQuantity">${qteTotal}</span> articles) : <span id="totalPrice">${prixTotal}</span> €
+// </p>
+// `
+
+// }
+
+//fonction du bouton supprimer pour enlever du panier un produit
+
+
+function supPanier(btnSup) {
+    // selectionner la div contenant le produit
+    let articlePanier = btnSup.closest("article") ;
+    
+    // la supprimer
+    articlePanier.remove() ;
+
 
 }
 
 
-
   export {
-    ajouterPanier, afficherPanier
+    ajouterPanier, 
+    afficherPanier, 
+    supPanier,
+    // afficherPrixTotal,
+    afficherProduitDuPanier
   }

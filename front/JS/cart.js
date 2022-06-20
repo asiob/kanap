@@ -2,33 +2,33 @@
 // option supprimer panier clear
 
 
-import { afficherPanier } from "./fonction.js";
+import { afficherPanier} from "./fonction.js";
+import { supPanier} from "./fonction.js";
 
 
 
 // calcul du total
+// let cartPrice = document.querySelector(".cart__price");
 
-let prixTotalCalcul = 0;
-let quantiteTotal = 0;
 let spanQty = document.querySelector('#totalQuantity');
-let spanPrice = document.querySelector('#price');
+let spanPrice = document.querySelector('#totalPrice');
+afficherPanier(spanQty, spanPrice);
+
 //aller chercher les prix dans le panier
 //  for ( let p = 0; p < product; p++) {
-//   let panier = product[p].price;
+    //   let panier = product[p].price;
+    
+    //   console.log(product[p].price);
+    //  }
+    // console.log(spanQty);
+    
+       
 
-//   console.log(product[p].price);
-//  }
+
+let deleteItems = document.querySelectorAll (".deleteItem") ;
+for(let i = 0; i < deleteItems.length; i++){
+    deleteItems[i].addEventListener (`click`, supPanier(deleteItems[i]))
+}
 
 
 
-
-afficherPanier();
-
-let panier = JSON.parse(localStorage.getItem('panier'));
-panier.forEach(p => {
-    prixTotalCalcul += p.price;
-    quantiteTotal += p.qty;
-});
-
-spanQty.innerHTML = quantiteTotal;
-spanPrice.innerHTML = quantiteTotal;
